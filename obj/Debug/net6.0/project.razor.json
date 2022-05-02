@@ -16343,6 +16343,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Contact/Details.cshtml",
+      "TargetPath": "Views\\Contact\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
       "FileKind": "mvc"
@@ -16408,6 +16413,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Contact/Delete.cshtml",
+      "TargetPath": "Views\\Contact\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
       "FileKind": "mvc"
@@ -16450,6 +16460,11 @@
     {
       "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Contact/Create.cshtml",
+      "TargetPath": "Views\\Contact\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16503,6 +16518,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Contact/Edit.cshtml",
+      "TargetPath": "Views\\Contact\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -16510,6 +16530,11 @@
     {
       "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/Views/Contact/Index.cshtml",
+      "TargetPath": "Views\\Contact\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

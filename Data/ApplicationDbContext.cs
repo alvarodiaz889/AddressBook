@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Data;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }
 
-    DbSet<User> AppUsers { get; set; }
-    DbSet<Contact> Contacts { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 }
