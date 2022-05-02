@@ -8,6 +8,7 @@ AzureStorageEmulator/
 
 # User-specific files
 *.rsuser
+*.dll
 *.suo
 *.user
 *.userosscache

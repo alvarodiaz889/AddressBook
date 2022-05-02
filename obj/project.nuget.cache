@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A7khd+7irJGIuO0n4tD8ii2vgGuy8pQGpvs6V/TAkI3nNPYcwsGXJM7vrBHyzvRIZSDT1IoxmJZphEtyC1g8XA==",
+  "dgSpecHash": "v787uIsxtG72N3B+4Xdn++PfKPMx/XdkxfKuKj6FnqFvZA95MU5+aj2Vy39sjD7svH7XRNiuXL6sC9DZFJ9kdg==",
   "success": true,
   "projectFilePath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/AddressBook.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,9 @@
     "/home/alvaro/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/6.0.4/microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.4.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.4/microsoft.aspnetcore.identity.entityframeworkcore.6.0.4.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.4/microsoft.aspnetcore.identity.ui.6.0.4.nupkg.sha512",
-    "/home/alvaro/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.0/microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "/home/alvaro/.nuget/packages/microsoft.aspnetcore.mvc.razor.extensions/6.0.4/microsoft.aspnetcore.mvc.razor.extensions.6.0.4.nupkg.sha512",
+    "/home/alvaro/.nuget/packages/microsoft.aspnetcore.mvc.razor.runtimecompilation/6.0.4/microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.4.nupkg.sha512",
+    "/home/alvaro/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.4/microsoft.aspnetcore.razor.language.6.0.4.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.bcl.asyncinterfaces/5.0.0/microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.build/17.0.0/microsoft.build.17.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.build.framework/17.0.0/microsoft.build.framework.17.0.0.nupkg.sha512",
@@ -26,7 +28,7 @@
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.csharp.scripting/4.0.0/microsoft.codeanalysis.csharp.scripting.4.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.csharp.workspaces/4.0.0/microsoft.codeanalysis.csharp.workspaces.4.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.features/4.0.0/microsoft.codeanalysis.features.4.0.0.nupkg.sha512",
-    "/home/alvaro/.nuget/packages/microsoft.codeanalysis.razor/6.0.0/microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+    "/home/alvaro/.nuget/packages/microsoft.codeanalysis.razor/6.0.4/microsoft.codeanalysis.razor.6.0.4.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.scripting.common/4.0.0/microsoft.codeanalysis.scripting.common.4.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.visualbasic/4.0.0/microsoft.codeanalysis.visualbasic.4.0.0.nupkg.sha512",
     "/home/alvaro/.nuget/packages/microsoft.codeanalysis.visualbasic.features/4.0.0/microsoft.codeanalysis.visualbasic.features.4.0.0.nupkg.sha512",

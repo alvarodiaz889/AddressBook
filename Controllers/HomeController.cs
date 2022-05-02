@@ -1,18 +1,22 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AddressBook.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AddressBook.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly UserManager<AppUser> _userManager;
 
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
         return RedirectToAction("Index", "Contact");

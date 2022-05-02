@@ -26,7 +26,7 @@ namespace AddressBook.Controllers
         }
 
         // GET: Contact/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace AddressBook.Controllers
         }
 
         // GET: Contact/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace AddressBook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,PhoneNumber,StreetName,City,Province,PostalCode,Country")] Contact contact)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PhoneNumber,StreetName,City,Province,PostalCode,Country")] Contact contact)
         {
             if (id != contact.Id)
             {
@@ -117,7 +117,7 @@ namespace AddressBook.Controllers
         }
 
         // GET: Contact/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace AddressBook.Controllers
         // POST: Contact/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);
             _context.Contacts.Remove(contact);
@@ -145,7 +145,7 @@ namespace AddressBook.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ContactExists(string id)
+        private bool ContactExists(int id)
         {
             return _context.Contacts.Any(e => e.Id == id);
         }
