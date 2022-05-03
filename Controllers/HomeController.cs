@@ -10,26 +10,15 @@ namespace AddressBook.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly ApplicationDbContext _context;
-    private readonly IOptions<AdminCredentialsOptions> _adminCreds;
-    public HomeController(ILogger<HomeController> logger,
-        ApplicationDbContext context,
-        IOptions<AdminCredentialsOptions> options)
+    public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
-        _context = context;
-        _adminCreds = options;
     }
 
     [Authorize]
     public IActionResult Index()
     {
         return RedirectToAction("Index", "Contact");
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

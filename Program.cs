@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AddressBook.Data;
 using AddressBook.Models;
+using Microsoft.Extensions.Options;
+using AddressBook.Tools;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -39,6 +41,14 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+using var scope = (app as IApplicationBuilder).ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+
+var op = scope.ServiceProvider.GetRequiredService<IOptions<AdminCredentialsOptions>>().Value;
+var um = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+var rm = scope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
+AppUserTools.CreateInitialIdentity(um, rm, op);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

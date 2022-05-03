@@ -9,9 +9,11 @@ using AddressBook.Data;
 using AddressBook.Models;
 using Microsoft.AspNetCore.Identity;
 using AddressBook.Tools;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AddressBook.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -97,7 +99,7 @@ namespace AddressBook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Id,Email,Password,ConfirmPassword")] UserViewModel vm)
+        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Id,Email")] UserViewModel vm)
         {
             if (id != vm.Id)
             {
@@ -113,12 +115,6 @@ namespace AddressBook.Controllers
                     local.FirstName = vm.FirstName;
                     local.LastName = vm.LastName;
                     await _userManager.UpdateAsync(local);
-
-                    if (vm.Password != null && vm.Password.Length > 0)
-                    {
-                        await _userManager.RemovePasswordAsync(local);
-                        await _userManager.AddPasswordAsync(local, vm.Password);
-                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
