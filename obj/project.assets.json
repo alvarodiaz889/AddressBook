@@ -10329,11 +10329,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/AddressBook.csproj",
+      "projectUniqueName": "/home/alvaro/Documents/Personal/IDC/AddressBook/AddressBook.csproj",
       "projectName": "AddressBook",
-      "projectPath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/AddressBook.csproj",
+      "projectPath": "/home/alvaro/Documents/Personal/IDC/AddressBook/AddressBook.csproj",
       "packagesPath": "/home/alvaro/.nuget/packages/",
-      "outputPath": "/home/alvaro/Documents/Personal/IDC_Interview/AddressBook/obj/",
+      "outputPath": "/home/alvaro/Documents/Personal/IDC/AddressBook/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/alvaro/.nuget/NuGet/NuGet.Config"
