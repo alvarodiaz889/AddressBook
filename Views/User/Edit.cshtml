@@ -32,9 +32,13 @@
                 <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         </form>
+        <form asp-action="SendPasswordReset">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="mt-2 w-60 btn btn btn-primary">Reset Password</button>
+        </form>
     </div>
 </div>
 
-<div>
+<div class="mt-2">
     <a asp-action="Index">Back to List</a>
 </div>

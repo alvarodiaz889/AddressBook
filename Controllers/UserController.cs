@@ -159,6 +159,15 @@ namespace AddressBook.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // POST: User/SendPasswordReset/5
+        // [HttpPost, ActionName("SendPasswordReset")]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> SendPasswordReset(int id)
+        // {
+        //     // await _userManager.DeleteAsync(new AppUser { Id = id });
+        //     // return RedirectToAction(nameof(Index));
+        // }
+
         private bool AppUserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);

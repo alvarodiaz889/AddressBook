@@ -4,12 +4,15 @@ using AddressBook.Data;
 using AddressBook.Models;
 using Microsoft.Extensions.Options;
 using AddressBook.Tools;
+using AddressBook.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentity<AppUser, AppRole>()
@@ -19,6 +22,17 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 
 builder.Services.Configure<AdminCredentialsOptions>(
     builder.Configuration.GetSection(AdminCredentialsOptions.SECTION));
+
+builder.Services.Configure<EmailSettingsOptions>(
+    builder.Configuration.GetSection(EmailSettingsOptions.SECTION));
+
+builder.Services.AddSingleton<IEmailSender>(ctx =>
+{
+    var logger = ctx.GetRequiredService<ILoggerFactory>().CreateLogger<EmailService>();
+    var stt = ctx.GetRequiredService<IOptions<EmailSettingsOptions>>();
+
+    return new EmailService(stt, logger);
+});
 
 builder.Services.AddControllersWithViews();
 var mvcBuilder = builder.Services.AddRazorPages();

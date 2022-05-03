@@ -8,8 +8,8 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using AddressBook.Models;
+using AddressBook.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -119,22 +119,34 @@ namespace AddressBook.Areas.Identity.Pages.Account.Manage
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmailChange",
-                    pageHandler: null,
-                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
-                    protocol: Request.Scheme);
-                await _emailSender.SendEmailAsync(
-                    Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                var sent = await SendExternalLoginEmail(userId, code);
+                if (sent)
+                    StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                else
+                    StatusMessage = "Confirmation email couldn't be sent";
                 return RedirectToPage();
             }
 
             StatusMessage = "Your email is unchanged.";
             return RedirectToPage();
+        }
+
+        async Task<bool> SendExternalLoginEmail(string userId, string code)
+        {
+            var callbackUrl = Url.Page(
+                    "/Account/ConfirmEmailChange",
+                    pageHandler: null,
+                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
+                    protocol: Request.Scheme);
+
+            var emailRequest = new EmailRequest
+            {
+                Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                ToEmail = Input.NewEmail,
+                Subject = "Confirm your email"
+            };
+            return await _emailSender.SendEmailAsync(emailRequest);
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
@@ -155,18 +167,30 @@ namespace AddressBook.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { area = "Identity", userId = userId, code = code },
-                protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            var sent = await SendVerificationEmail(userId, code, email);
+            if (sent)
+                StatusMessage = "Verification email sent. Please check your email.";
+            else
+                StatusMessage = "Verification email couldn't be sent";
             return RedirectToPage();
+        }
+
+        async Task<bool> SendVerificationEmail(string userId, string code, string email)
+        {
+            var callbackUrl = Url.Page(
+                 "/Account/ConfirmEmail",
+                 pageHandler: null,
+                 values: new { area = "Identity", userId = userId, code = code },
+                 protocol: Request.Scheme);
+
+            var emailRequest = new EmailRequest
+            {
+                Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                ToEmail = email,
+                Subject = "Confirm your email"
+            };
+            return await _emailSender.SendEmailAsync(emailRequest);
         }
     }
 }

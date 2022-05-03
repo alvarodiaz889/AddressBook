@@ -8,9 +8,9 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using AddressBook.Models;
+using AddressBook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -72,18 +72,30 @@ namespace AddressBook.Areas.Identity.Pages.Account
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+            var sent = await SendConfirmationEmail(userId, code);
+            if (sent)
+                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            else
+                ModelState.AddModelError(string.Empty, "Email couldn't be sent");
+            return Page();
+        }
+
+        async Task<bool> SendConfirmationEmail(string userId, string code)
+        {
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
-            return Page();
+            var emailRequest = new EmailRequest
+            {
+                Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                ToEmail = Input.Email,
+                Subject = "Confirm your email"
+            };
+            return await _emailSender.SendEmailAsync(emailRequest);
         }
     }
 }
