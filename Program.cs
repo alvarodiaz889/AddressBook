@@ -15,6 +15,9 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<AdminCredentialsOptions>(
+    builder.Configuration.GetSection(AdminCredentialsOptions.SECTION));
+
 builder.Services.AddControllersWithViews();
 var mvcBuilder = builder.Services.AddRazorPages();
 

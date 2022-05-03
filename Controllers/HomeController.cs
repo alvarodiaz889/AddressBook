@@ -1,17 +1,24 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AddressBook.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using AddressBook.Data;
+using Microsoft.Extensions.Options;
 
 namespace AddressBook.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    public HomeController(ILogger<HomeController> logger)
+    private readonly ApplicationDbContext _context;
+    private readonly IOptions<AdminCredentialsOptions> _adminCreds;
+    public HomeController(ILogger<HomeController> logger,
+        ApplicationDbContext context,
+        IOptions<AdminCredentialsOptions> options)
     {
         _logger = logger;
+        _context = context;
+        _adminCreds = options;
     }
 
     [Authorize]
