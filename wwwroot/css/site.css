@@ -16,3 +16,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+header{
+  background-color: #41464b;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #41464b;
+  color: white!important;
+}
+
+@media screen and (max-width: 990px) {
+  #table-container{
+    overflow-x: scroll;
+  }
+}

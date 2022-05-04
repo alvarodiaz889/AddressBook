@@ -26,12 +26,12 @@ builder.Services.Configure<AdminCredentialsOptions>(
 builder.Services.Configure<EmailSettingsOptions>(
     builder.Configuration.GetSection(EmailSettingsOptions.SECTION));
 
-builder.Services.AddSingleton<IEmailSender>(ctx =>
+builder.Services.AddScoped<IEmailSender>(ctx =>
 {
     var logger = ctx.GetRequiredService<ILoggerFactory>().CreateLogger<EmailService>();
     var stt = ctx.GetRequiredService<IOptions<EmailSettingsOptions>>();
-
-    return new EmailService(stt, logger);
+    var um = ctx.GetRequiredService<UserManager<AppUser>>();
+    return new EmailService(stt, logger, um);
 });
 
 builder.Services.AddControllersWithViews();

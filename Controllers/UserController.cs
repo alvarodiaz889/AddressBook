@@ -10,6 +10,7 @@ using AddressBook.Models;
 using Microsoft.AspNetCore.Identity;
 using AddressBook.Tools;
 using Microsoft.AspNetCore.Authorization;
+using AddressBook.Services;
 
 namespace AddressBook.Controllers
 {
@@ -18,11 +19,15 @@ namespace AddressBook.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public UserController(ApplicationDbContext context, UserManager<AppUser> userManager)
+        public UserController(ApplicationDbContext context,
+            UserManager<AppUser> userManager,
+            IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: User
@@ -159,14 +164,17 @@ namespace AddressBook.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: User/SendPasswordReset/5
-        // [HttpPost, ActionName("SendPasswordReset")]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> SendPasswordReset(int id)
-        // {
-        //     // await _userManager.DeleteAsync(new AppUser { Id = id });
-        //     // return RedirectToAction(nameof(Index));
-        // }
+        //POST: User/SendPasswordReset/5
+        [HttpPost, ActionName("SendPasswordReset")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendPasswordReset(string email)
+        {
+            var baseUri = new UriBuilder(Request.Scheme, Request.Host.Host);
+            if (Request.Host.Port.HasValue)
+                baseUri.Port = Request.Host.Port.Value;
+            await _emailSender.SendForgotPasswordEmail(email, baseUri.ToString());
+            return RedirectToAction(nameof(Index));
+        }
 
         private bool AppUserExists(int id)
         {
