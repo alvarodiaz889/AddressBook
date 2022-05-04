@@ -9,5 +9,5 @@
   manage the roles.
 
 - The migrations are applied automatically on Startup as well.
-  Please clone the repo on [Github] (https://github.com/alvarodiaz889/AddressBook) and
+  Please clone the repo on [Github](https://github.com/alvarodiaz889/AddressBook) and
   install [.NetCore](https://dotnet.microsoft.com/en-us/download)
